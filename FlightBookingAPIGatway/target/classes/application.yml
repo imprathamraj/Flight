@@ -1,0 +1,64 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Api-Gateway
+
+  config:
+    import: configserver:http://localhost:8762
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**,/users/**,/admin/**
+
+        - id: flight-service
+          uri: lb://FLIGHT-SERVICE
+          predicates:
+              - Path=/flight/**
+          filters:
+              - AuthenticationFilter
+
+        - id: booking-service
+          uri: lb://BOOKING-SERVICE
+          predicates:
+            - Path=/bookings/**
+          filters:
+            - AuthenticationFilter
+
+        - id: checkin-service
+          uri: lb://CHECKIN-SERVICE
+          predicates:
+            - Path=/checkin/**
+          filters:
+            - AuthenticationFilter
+
+
+
+        - id: fare-service
+          uri: lb://FARE-SERVICE
+          predicates:
+            - Path=/fare/**
+          filters:
+            - AuthenticationFilter
+
+
+
+        - id: payment-gateway
+          uri: lb://PAYMENT-GATEWAY
+          predicates:
+            - Path=/payment/**
+          filters:
+            - AuthenticationFilter
+
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+           - Path=/sendmail
+          filters:
+            - AuthenticationFilter

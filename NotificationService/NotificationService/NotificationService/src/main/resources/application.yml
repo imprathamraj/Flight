@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: yogeshkushwah775@gmail.com
+    password: umbz yaak eril htmy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+#starttls -show the data share between the smtp server and local machine is encrypted or not
+#Smtp - if it is true then it means our machine need to share the password to authenticate it .
