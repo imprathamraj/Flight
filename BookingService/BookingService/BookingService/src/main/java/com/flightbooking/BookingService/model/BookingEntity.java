@@ -1,0 +1,41 @@
+package com.flightbooking.BookingService.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+
+@Entity
+@Table(name = "Bookings")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class BookingEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String bookingId;
+    private String userId;
+    private String flightId;
+    private String name;
+    private int age;
+    private String Email;
+    private String address;
+    private String fromCity;
+    private String toCity;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date departure;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date arrival;
+
+   private String paymentId;
+    private Long paymentAmount;
+
+
+}
